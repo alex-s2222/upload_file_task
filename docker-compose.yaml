@@ -11,7 +11,8 @@ services:
     depends_on:
       - db
       - redis
-    command: python mysite/manage.py runserver 0.0.0.0:8000
+
+    command: sh migrate_and_run.sh
 
     environment:
       - DEBUG=True  
@@ -46,9 +47,13 @@ services:
       - REDIS_PORT=6379
     
     depends_on:
-      - web
       - db
       - redis
+      - web
+ 
+  redis:
+    image: redis:latest
+    container_name: redis-server
 
   db:
     image: postgres:latest
@@ -63,7 +68,5 @@ services:
       - "5432:5432"
 
 
-  redis:
-    image: redis:latest
-    container_name: redis-server
+
   
