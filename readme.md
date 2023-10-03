@@ -20,11 +20,6 @@ docker compose build
 docker compose up
 ```
 
-запустить миграцию в базе данных
-```
-docker exec my-django-app python mysite/manage.py migrate --noinput
-```
-
 ## Возможные ошибки
 
 сначало создается django app после него уже база данных, если такое произошло, нужно перезапустить django контейнейнер (в docker-compose.yaml указал, что бы сначало собирался postgres контейнер) (в чем ошибка не знаю)
